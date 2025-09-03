@@ -1,0 +1,20 @@
+public static List<Integer> closestNumbers(List<Integer> arr) {
+    Collections.sort(arr);
+    List<Integer> res = new ArrayList<>();
+    int n = arr.size();
+    int min = Integer.MAX_VALUE;
+
+    for (int i = 1; i < n; i++) {
+        int d = arr.get(i) - arr.get(i - 1); // sorted => non-negative
+        if (d < min) {
+            min = d;
+            res.clear();
+            res.add(arr.get(i - 1));
+            res.add(arr.get(i));
+        } else if (d == min) {
+            res.add(arr.get(i - 1));
+            res.add(arr.get(i));
+        }
+    }
+    return res;
+}
