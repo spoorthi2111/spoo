@@ -1,0 +1,22 @@
+ static long countTriplets(List<Long> arr, long r) {
+       Map<Long,Long> leftMap=new HashMap<>();
+        Map<Long,Long> rightMap=new HashMap<>();
+        for(long num:arr){
+              rightMap.put(num, rightMap.getOrDefault(num, 0L) + 1);
+        }
+        long count=0;
+        for(long num:arr){
+            rightMap.put(num, rightMap.get(num) - 1);
+            if(num%r==0){
+                long left=leftMap.getOrDefault(num/r,0L);
+                long right=rightMap.getOrDefault(num*r,0L);
+                count+=left*right;
+            }
+            leftMap.put(num, leftMap.getOrDefault(num, 0L) + 1);
+        }
+    
+        return count;
+
+
+
+    }
