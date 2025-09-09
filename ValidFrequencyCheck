@@ -1,0 +1,41 @@
+public class ValidFrequencyCheck {
+    public static String isValid(String s) {
+        Map<Character, Integer> freqMap = new HashMap<>();
+
+        for (char c : s.toCharArray()) {
+            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+        }
+
+        
+        Map<Integer, Integer> freqCount = new HashMap<>();
+        for (int freq : freqMap.values()) {
+            freqCount.put(freq, freqCount.getOrDefault(freq, 0) + 1);
+        }
+
+    
+        if (freqCount.size() == 1) {
+            return "YES";
+        }
+
+       
+        if (freqCount.size() == 2) {
+            List<Integer> keys = new ArrayList<>(freqCount.keySet());
+            int f1 = keys.get(0), f2 = keys.get(1);
+
+           
+            if ((freqCount.get(f1) == 1 && f1 - 1 == 0) ||
+                (freqCount.get(f2) == 1 && f2 - 1 == 0)) {
+                return "YES";
+            }
+
+            if ((freqCount.get(f1) == 1 && Math.abs(f1 - f2) == 1) ||
+                (freqCount.get(f2) == 1 && Math.abs(f1 - f2) == 1)) {
+                return "YES";
+            }
+        }
+
+        // otherwise invalid
+        return "NO";
+    }
+   }
+}
