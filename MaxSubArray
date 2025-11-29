@@ -1,0 +1,32 @@
+ public static List<Integer> maxSubarray(List<Integer> arr) {
+        List<Integer> l=new ArrayList<Integer>();
+        int[] a=new int[arr.size()];
+        for(int i=0;i<arr.size();i++){
+            a[i]=arr.get(i);
+        }
+        int cursum=0;
+        int maxsum=Integer.MIN_VALUE;
+        int subcur=0;
+        int maxsub=Integer.MIN_VALUE;
+        
+        for(int i=0;i<arr.size();i++){
+            cursum+=a[i];
+            maxsum=Math.max(cursum,maxsum);
+            if(cursum<0){
+                cursum=0;
+            }
+            if(a[i]>0){
+                subcur+=a[i];
+                
+               
+            }
+        }
+        maxsub = (subcur > 0) ? subcur : maxsum;
+
+        l.add(maxsum);
+        l.add(maxsub);
+        return l;
+
+    }
+
+}
